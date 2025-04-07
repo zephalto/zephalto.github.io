@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Flight view generator</title>
+	<meta name="author" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal-dark.css">
+	<link href="Style.css" rel="stylesheet">
+</head>
+
+<body>
+	<script src="https://cesium.com/downloads/cesiumjs/releases/1.127/Build/Cesium/Cesium.js"></script>
+	<script src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"></script>
+
+	<div id="cesiumContainer" style="height: 100%;width: 100%;"></div>
+
+	<div id="citySearchBarCentralizer">
+		<div id="citySearchBar" class="autocomplete-container"></div>
+	</div>
+
+	<div id="altitudeSelectorCentralizer">
+		<tc-range-slider id="altitudeSelector"
+			type="vertical"
+			min="1" 
+			max="40"
+			step="1"
+			value="25"
+
+			btt="true"
+			slider-height="75vh"
+			slider-width="0.1rem"
+			
+
+			pointer-width="0.7rem"
+			pointer-height="0.7rem"
+
+			slider-bg="rgba(255,255,255,0.2)"
+			slider-bg-hover="rgba(255,255,255,0.2)"
+			slider-bg-fill="white"
+			
+			moving-tooltip="true"
+			moving-tooltip-distance-to-pointer="40"
+			moving-tooltip-width="50"
+			moving-tooltip-height="30"
+			moving-tooltip-bg="rgb(0,0,0)"
+			moving-tooltip-text-color="rgb(255,255,255)"
+			moving-tooltip-units=" km">
+		</tc-range-slider>
+	</div>	
+	<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-moving-tooltip.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
+
+	
+
+	<script type="text/javascript" src="CesiumView.js"></script>
+	<script type="text/javascript" src="SearchBar.js"></script>
+	<script type="text/javascript" src="AltitudeSelector.js"></script>
+	
+</body>
+
+</html>

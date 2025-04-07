@@ -1,0 +1,53 @@
+html{
+	user-select: none;
+	width: 100%; 
+	height: 100%;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+body{
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	background-color: black;
+}
+.cesium-viewer-toolbar{
+	display: none;
+}
+.cesium-viewer-bottom{
+	display: none;
+}
+.cesium-viewer-fullscreenContainer{
+	opacity: 0;
+}
+.cesium-viewer-animationContainer{
+	opacity: 0;
+}
+.cesium-viewer-timelineContainer{
+	opacity: 0;
+}
+#citySearchBarCentralizer{
+	position: absolute;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	padding-top: 2vh;
+	padding-left: 20%;
+	padding-right: 20%;
+	width: 100%;
+}
+#citySearchBar{
+	position: relative;
+	width: 100%;
+}
+
+#altitudeSelectorCentralizer{
+	position: absolute;
+	box-sizing: border-box;
+	right: 2vw;
+	top: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
