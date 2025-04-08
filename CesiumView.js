@@ -5,6 +5,17 @@ var CINEMATIC_STATE = false
 var HOME_VIEW = true;
 var TARGET_VIEW = false;
 
+
+// View variables
+var lat = 0;
+var lon = 0;
+var alt = 30000000;
+
+var heading = 0;
+var pitch = -90;
+const maxPitch = 0;
+const minPitch = -60;
+
 // Create viewer:
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDUwNTVlZS0yZGVlLTRlYTQtYjMzZi02MzFhOTgyYThhZWYiLCJpZCI6MjYzOTk3LCJpYXQiOjE3MzQ3NjYyNjJ9.wEvqc-usYk0XDMrWD-KHN4bbC-sJj9D5mYte_Rg9E6g'
 const viewer = new Cesium.Viewer('cesiumContainer', {
@@ -19,11 +30,9 @@ viewer.scene.screenSpaceCameraController.enableTilt = false;
 viewer.scene.screenSpaceCameraController.enableLook = false;
 
 // Custom camera:
-var lastMouseX;
 var isMouseDown = false;
 
 viewer.screenSpaceEventHandler.setInputAction(function(ev){
-	lastMouseX = ev.position.x;
 	isMouseDown = true;
 	if (!CINEMATIC_STATE){
 		enterCinematic();
@@ -35,8 +44,12 @@ viewer.screenSpaceEventHandler.setInputAction(function(ev){
 viewer.screenSpaceEventHandler.setInputAction(function(ev){
 	if (isMouseDown){
 		if (!HOME_VIEW){
-			const shift = ev.endPosition.x - ev.startPosition.x;
-			heading -= 0.04 * shift;
+			const shiftHeading = ev.endPosition.x - ev.startPosition.x;
+			const shiftPitch = ev.endPosition.y - ev.startPosition.y;
+			heading -= 0.04 * shiftHeading;
+			pitch += 0.04 * shiftPitch;
+			if (pitch > maxPitch){pitch=maxPitch}
+			if (pitch < minPitch){pitch=minPitch}
 			updateCesiumView(0);
 		}
 	}
@@ -58,14 +71,6 @@ document.addEventListener('keydown',function(ev){
 		}
 	}
 })
-
-
-var lat = 0;
-var lon = 0;
-var alt = 30000000;
-
-var heading = 0;
-var pitch = -90;
 
 function updateCesiumView(transitionDuration){
 	viewer.camera.flyTo({
@@ -154,6 +159,7 @@ function targetHomeView(){
 	updateCesiumView(0);
 
 	alt = 30000000;
+	lat = 0;
 	updateCesiumView(3);
 	setTimeout(function(){
 		TARGET_VIEW = false;
