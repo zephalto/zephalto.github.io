@@ -154,16 +154,20 @@ function targetLocation(latitude,longitude,altitude){
 }
 
 function targetHomeView(){
+	clearInterval(cinematicInterval);
 	HOME_VIEW = true;
 	pitch = -90;
 	updateCesiumView(0);
 
 	alt = 30000000;
 	lat = 0;
+	heading = 0;
 	updateCesiumView(3);
 	setTimeout(function(){
 		TARGET_VIEW = false;
 		disableAltitude();
+		cinematicView();
+		cinematicInterval = setInterval(cinematicView,5000);
 	},3000);
 }
 
