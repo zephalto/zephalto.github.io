@@ -123,6 +123,9 @@ function exitCinematic(){
 	UIList.forEach(element => {
 		element.style.opacity = 1;
 	});
+	if (HOME_VIEW){
+		document.querySelector('#altitudeSelector').style.opacity = 0;
+	}
 }
 
 function targetLocation(latitude,longitude,altitude){
