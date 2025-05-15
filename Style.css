@@ -51,3 +51,12 @@ body{
 	flex-direction: column;
 	justify-content: center;
 }
+
+#DebugMessage{
+	position: absolute;
+	color: white;
+	margin: 0;
+	left: 2vh;
+	bottom: 2vh;
+	font-size: xx-small;
+}
