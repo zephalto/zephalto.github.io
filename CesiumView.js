@@ -31,12 +31,8 @@ viewer.scene.screenSpaceCameraController.enableLook = false;
 
 // Custom camera:
 var isMouseDown = false;
-
 viewer.screenSpaceEventHandler.setInputAction(function(ev){
 	isMouseDown = true;
-	if (!CINEMATIC_STATE){
-		enterCinematic();
-	}
 }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
 viewer.screenSpaceEventHandler.setInputAction(function(ev){
 	isMouseDown = false;
@@ -46,8 +42,8 @@ viewer.screenSpaceEventHandler.setInputAction(function(ev){
 		if (!HOME_VIEW){
 			const shiftHeading = ev.endPosition.x - ev.startPosition.x;
 			const shiftPitch = ev.endPosition.y - ev.startPosition.y;
-			heading -= 0.04 * shiftHeading;
-			pitch += 0.04 * shiftPitch;
+			heading -= 0.08 * shiftHeading;
+			pitch += 0.08 * shiftPitch;
 			if (pitch > maxPitch){pitch=maxPitch}
 			if (pitch < minPitch){pitch=minPitch}
 			updateCesiumView(0);
@@ -103,19 +99,20 @@ UIList.forEach(element => {
 });
 
 
-// Check for moves on the mouse
-var lastMove = new Date().getTime();
-document.addEventListener('mousemove',function(e){
-	lastMove = new Date().getTime();
+// Mouse click cinematic mode
+document.querySelector("#cesiumContainer").addEventListener('click',function(e){
 	if (CINEMATIC_STATE){
 		exitCinematic();
+		console.log('Show elements');
+	}else{
+		enterCinematic();
+		console.log('Hide elements');
 	}
 });
 
 
 function enterCinematic(){
 	CINEMATIC_STATE = true;
-
 	UIList.forEach(element => {
 		element.style.opacity = 0;
 	});
@@ -123,7 +120,6 @@ function enterCinematic(){
 
 function exitCinematic(){
 	CINEMATIC_STATE = false;
-	lastMove = new Date().getTime();
 	UIList.forEach(element => {
 		element.style.opacity = 1;
 	});
