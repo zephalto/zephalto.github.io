@@ -181,3 +181,12 @@ function cinematicView(){
 }
 cinematicView();
 cinematicInterval = setInterval(cinematicView,5000);
+
+// Ask for fullscreen when mobile device is rotated
+window.addEventListener("orientationchange", function(event) {
+	var orientation = window.screen.orientation;
+	if (["landscape-primary","landscape-secondary"].indexOf(orientation) !== -1) {
+		document.body.requestFullscreen();
+	}
+  }
+);
