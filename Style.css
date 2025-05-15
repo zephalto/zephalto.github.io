@@ -53,6 +53,7 @@ body{
 }
 
 #DebugMessage{
+	display: none;
 	position: absolute;
 	color: white;
 	margin: 0;

@@ -103,10 +103,8 @@ UIList.forEach(element => {
 document.querySelector("#cesiumContainer").addEventListener('click',function(e){
 	if (CINEMATIC_STATE){
 		exitCinematic();
-		console.log('Show elements');
 	}else{
 		enterCinematic();
-		console.log('Hide elements');
 	}
 });
 
