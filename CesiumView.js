@@ -184,7 +184,8 @@ cinematicInterval = setInterval(cinematicView,5000);
 
 // Ask for fullscreen when mobile device is rotated
 window.addEventListener("orientationchange", function(event) {
-	var orientation = window.screen.orientation;
+	console.log(window.screen.orientation)
+	var orientation = window.screen.orientation.type;
 	if (["landscape-primary","landscape-secondary"].indexOf(orientation) !== -1) {
 		document.body.requestFullscreen();
 	}
